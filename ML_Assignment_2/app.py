@@ -32,12 +32,12 @@ st.sidebar.info("Upload the 'telco_test_sample.csv' generated in your notebook."
 # --- Step 6b: Sidebar - Model Selection ---
 st.sidebar.header("2. Model Selection")
 model_options = {
-    "Logistic Regression": "model/logistic_regression.pkl",
-    "Decision Tree": "model/decision_tree.pkl",
-    "kNN": "model/knn.pkl",
-    "Naive Bayes": "model/naive_bayes.pkl",
-    "Random Forest (Ensemble)": "model/random_forest_(ensemble).pkl",
-    "XGBoost (Ensemble)": "model/xgboost_(ensemble).pkl"
+    "Logistic Regression": "ML_Assignment_2/model/logistic_regression.pkl",
+    "Decision Tree": "ML_Assignment_2/model/decision_tree.pkl",
+    "kNN": "ML_Assignment_2/model/knn.pkl",
+    "Naive Bayes": "ML_Assignment_2/model/naive_bayes.pkl",
+    "Random Forest (Ensemble)": "ML_Assignment_2/model/random_forest_(ensemble).pkl",
+    "XGBoost (Ensemble)": "ML_Assignment_2/model/xgboost_(ensemble).pkl"
 }
 selected_model_name = st.sidebar.selectbox("Select a model to evaluate:", list(model_options.keys()))
 
@@ -89,4 +89,5 @@ if uploaded_file is not None:
     else:
         st.warning("The uploaded file must contain a 'Churn' column for evaluation.")
 else:
+
     st.info("Please upload a test CSV file from the sidebar to begin.")
