@@ -34,23 +34,23 @@ def preprocess_data(df):
     
     # 3. Ensure columns match the training set exactly
     try:
-        expected_cols = joblib.load('model/model_columns.pkl') 
+        expected_cols = joblib.load('ML_Assignment_2/model/model_columns.pkl') 
         for col in expected_cols:
             if col not in df_encoded.columns:
                 df_encoded[col] = 0
         # Reorder and filter
         df_encoded = df_encoded[expected_cols]
     except FileNotFoundError:
-        st.error("Error: 'model/model_columns.pkl' not found. Check your GitHub folder.")
+        st.error("Error: 'ML_Assignment_2/model/model_columns.pkl' not found. Check your GitHub folder.")
         return None
     
     # 4. Scale numeric columns
     try:
-        scaler = joblib.load('model/scaler.pkl')
+        scaler = joblib.load('ML_Assignment_2/model/scaler.pkl')
         num_cols = ['tenure', 'MonthlyCharges', 'TotalCharges']
         df_encoded[num_cols] = scaler.transform(df_encoded[num_cols])
     except FileNotFoundError:
-        st.error("Error: 'model/scaler.pkl' not found.")
+        st.error("Error: 'ML_Assignment_2/model/scaler.pkl' not found.")
         return None
         
     return df_encoded
@@ -65,12 +65,12 @@ uploaded_file = st.sidebar.file_uploader("Upload Raw Test CSV", type="csv")
 
 st.sidebar.header("2. Model Selection")
 model_options = {
-    "Logistic Regression": "model/logistic_regression.pkl",
-    "Decision Tree": "model/decision_tree.pkl",
-    "kNN": "model/knn.pkl",
-    "Naive Bayes": "model/naive_bayes.pkl",
-    "Random Forest (Ensemble)": "model/random_forest_(ensemble).pkl",
-    "XGBoost (Ensemble)": "model/xgboost_(ensemble).pkl"
+    "Logistic Regression": "ML_Assignment_2/model/logistic_regression.pkl",
+    "Decision Tree": "ML_Assignment_2/model/decision_tree.pkl",
+    "kNN": "ML_Assignment_2/model/knn.pkl",
+    "Naive Bayes": "ML_Assignment_2/model/naive_bayes.pkl",
+    "Random Forest (Ensemble)": "ML_Assignment_2/model/random_forest_(ensemble).pkl",
+    "XGBoost (Ensemble)": "ML_Assignment_2/model/xgboost_(ensemble).pkl"
 }
 selected_model_name = st.sidebar.selectbox("Select a model:", list(model_options.keys()))
 
@@ -125,3 +125,4 @@ if uploaded_file is not None:
         st.error("The CSV must contain a 'Churn' column for evaluation metrics to work.")
 else:
     st.info("👋 Welcome! Please upload your 'telco_raw_test_sample.csv' to see the model in action.")
+
